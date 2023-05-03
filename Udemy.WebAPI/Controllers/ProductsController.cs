@@ -12,7 +12,7 @@ namespace Udemy.WebAPI.Controllers
 {
     [EnableCors]
     [ApiController]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
         private readonly IProductRepository _productRepository;

@@ -1,0 +1,29 @@
+﻿@model List<Udemy.ConsumeAPI.ResponseModel.ProductResponseModel>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Web Api Consume</title>
+</head>
+<body>
+    <p>MVC Works</p>
+
+    <p>
+        @ViewBag.ResponeMessage
+    </p>
+
+    <table>
+        <tr>
+            <th>Ürünün adı</th>
+            <th>Ürünün fiyatı</th>
+            <th>Ürünün stoğu</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Stock</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

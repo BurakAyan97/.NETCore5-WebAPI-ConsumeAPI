@@ -1,6 +1,8 @@
-﻿namespace Udemy.WebAPI.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Udemy.WebAPI.Controllers
 {
-    public class HomeController
+    public class HomeController:ControllerBase
     {
     }
 }
