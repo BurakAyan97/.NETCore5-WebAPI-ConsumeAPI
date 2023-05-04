@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,6 +23,7 @@ namespace Udemy.WebAPI.Controllers
             _productRepository = productRepository;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -29,8 +31,9 @@ namespace Udemy.WebAPI.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles =("Admin"))]
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAll(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             var data = await _productRepository.GetByIdAsync(id);
 
@@ -72,7 +75,7 @@ namespace Udemy.WebAPI.Controllers
         }
 
         [HttpPost("upload")]
-        public async Task<IActionResult> Upload(IFormFile formFile)
+        public async Task<IActionResult> Upload([FromForm] IFormFile formFile)
         {
             var newName = Guid.NewGuid() + "." + Path.GetExtension(formFile.FileName);
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", newName);
